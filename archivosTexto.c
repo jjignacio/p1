@@ -65,3 +65,13 @@ int main() {
 	system("PAUSE");
 	return 0;
 }
+
+1 - Caracter a caracter:
+	fgetc(<archivo>) -> char
+	fputc(<char>,<archivos>)
+2 - Linea a linea:
+	fgets(<cadena>,<tamaño>,<archivo>);
+	fputs(<cadena>,<archivo>);
+3 - Con formato:
+	fprintf(<archivo>,<cadenaConversion>,<variable>);
+	fscanf(<archivo>,<cadenaConversion>,<variable>);
