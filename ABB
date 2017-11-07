@@ -1,0 +1,75 @@
+publ ic inter face ABBTDA {
+  int Raiz ();
+  ABBTDA HijoIzq();
+  ABBTDA HijoDer();
+  boolean ArbolVacio();
+  void InicializarArbol();
+  void AgregarElem( int x);
+  void EliminarElem( int x);
+}
+class NodoABB{
+  int info ;
+  ABBTDA hijoIzq;
+  ABBTDA hijoDer;
+}
+public class ABB implements ABBTDA{
+  NodoABB raiz ;
+  public int Raiz (){
+    return raiz .info ;
+  }
+  public boolean ArbolVacio(){
+    return ( raiz == nul l );
+  }
+  public void InicializarArbol(){
+    raiz = nul l ;
+  }
+  publ ic ABBTDA HijoDer(){
+    return raiz . hijoDer;
+  }
+  publ ic ABBTDA HijoIzq(){
+    return raiz . hijoIzq;
+  }
+  public void AgregarElem( int x){
+    if (raiz == nul l ){
+      raiz = new NodoABB();
+      raiz . info = x;
+      raiz . hijoIzq = new ABB ();
+      raiz . hijoIzq. InicializarArbol();
+      raiz . hijoDer = new ABB ();
+      raiz . hijoDer. InicializarArbol();
+   }else if ( raiz . info > x )
+    raiz . hijoIzq.AgregarElem(x);
+    e l s e i f ( raiz . info < x)
+    raiz . hijoDer.AgregarElem(x);
+  }
+  publ ic void EliminarElem( int x){
+    i f (raiz != nul l ) {
+      i f ( raiz .info == x && raiz .hijoIzq. ArbolVacio() &&
+      raiz . hijoDer.ArbolVacio()) {
+      raiz = nul l ;
+    }e l s e i f (raiz .info == x && !raiz .hijoIzq. ArbolVacio()) {
+      raiz .info = thi s .mayor(raiz . hijoIzq);
+      raiz . hijoIzq. EliminarElem( raiz .info );
+    }else if (raiz .info == x && raiz . hijoIzq. ArbolVacio()) {
+      raiz .info = thi s .menor(raiz . hijoDer);
+      raiz . hijoDer. EliminarElem( raiz .info );
+    }else if (raiz .info < x){
+       raiz . hijoDer. EliminarElem(x);
+    }e l s e {
+      raiz . hijoIzq. EliminarElem(x);
+    }
+   }
+ }
+  private int mayor( ABBTDA a){
+   i f (a. HijoDer(). ArbolVacio())
+      return a.Raiz ();
+   e l s e
+      return mayor(a. HijoDer());
+  }
+  private int menor( ABBTDA a){
+   i f (a. HijoIzq(). ArbolVacio())
+      return a.Raiz ();
+  e l s e
+    return menor(a. HijoIzq());
+  }
+}
