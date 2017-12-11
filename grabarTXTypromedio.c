@@ -162,3 +162,56 @@ while(!feof(arch)){
 }
 }
 
+/*1.	Hacer una función que permita eliminar todos los comentarios de una o varias líneas de un programa fuente 
+escrito en lenguaje C,.*/
+
+
+#include <stdio.h>
+
+void eliminar_comentarios(FILE *arch);
+
+
+int main(){
+
+
+FILE *arch;
+
+
+arch=fopen("archivo.txt","rt+");
+eliminar_comentarios(arch);
+fclose(arch);
+
+printf("El archivo se genero en otro archivo llamado Destino.txt\n");
+
+system("PAUSE");
+return 0;
+
+}
+
+void eliminar_comentarios(FILE *arch){
+
+	FILE *destino;
+	char copia[3];
+	int i;
+
+	destino=fopen("Destino.txt","wt+");
+
+fgets(copia,2,arch);
+
+while(!feof(arch)){
+
+		i=0;
+		if(copia[i]!='/' && copia[i++]!='*'){
+			fputs(copia,destino);
+		}else{
+			  while(copia[i]!='*' && copia[i++]!='/'){
+					 i=0;
+					 fgets(copia,3,arch);
+			  }
+		}
+fgets(copia,2,arch);
+}
+	fclose(destino);
+
+}
+
