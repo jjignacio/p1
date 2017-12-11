@@ -10,10 +10,16 @@ struct sNodo {
 typedef struct sNodo* tpuntero;
 
 void insertarAlPrincipio(tpuntero *cabeza, int n);
+void insertarAlFinal(tpuntero *cabeza, int n);
+void insertarenorden(tpuntero *cabeza, int n);
+void insertarenorden_sinrepetidos(tpuntero *cabeza, int n);
 void imprimirLista(tpuntero cabeza);
 void borrarLista(tpuntero *cabeza);
-void invertirLista(tpuntero *cabeza);
+void borrarPrimerNodo(tpuntero *cabeza);
+void borrarUltimoNodo(tpuntero *cabeza);
 void borraElemento(tpuntero *cabeza, int valor);
+int borrarNodo(tpuntero *cabeza,int posicion);
+void invertirLista(tpuntero *cabeza);
 
 int main() {
 	int n;
