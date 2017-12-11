@@ -75,3 +75,51 @@ int main() {
 3 - Con formato:
 	fprintf(<archivo>,<cadenaConversion>,<variable>);
 	fscanf(<archivo>,<cadenaConversion>,<variable>);
+
+#pragma warning (disable:4996)
+#include <stdio.h>
+#include <ctype.h>
+#define N 256
+
+int eliminarDirectivas ();
+int main ()
+{
+	eliminarDirectivas ();
+	return 0;
+}
+
+int eliminarDirectivas ()
+{
+	FILE *origen, *destino;
+	char cad[N];
+	int i;
+	origen =fopen ("programa.txt","rt");
+	if (origen == NULL)
+	{
+		puts ("No se pudo abrir para la lectura el archivo programa.txt");
+		return 1;
+	}
+	destino = fopen ("destino.txt", "wt");
+	if (destino == NULL)
+	{
+		puts ("No se pudo abrir para la escritura el archivo destino.txt");
+		return 1;
+	}
+	fgets (cad, N, origen);
+	while (!feof (origen))
+	{
+		for (i = 0; i < N; i++)
+		{
+			if (cad[i]== '#')
+			{
+				cad[i]= '\n';
+				cad[i+1]= '\0';
+				
+			}
+		}
+		fputs(cad, destino);
+		fgets (cad,N,origen);
+	}
+	return 0;
+}
+
